@@ -12,6 +12,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "dotenv": "^8.2.0",
     "fontsource-roboto": "^4.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -20,14 +21,16 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "BROWSER='Brave Browser' PORT=3033 react-scripts start",
+    "old-start": "PORT=process.env.PORT react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint src --ext=js,jsx,ts,tsx",
     "lint:fix": "./node_modules/.bin/eslint client --ext=js,jsx,ts,tsx --fix",
     "typecheck": "./node_modules/.bin/tsc --noEmit",
-    "typecheck:watch": "npm run typecheck -- --watch"
+    "typecheck:watch": "npm run typecheck -- --watch",
+    "check-env": "node -e 'console.log(process.env)' | grep npm",
+    "start": "node loadenv.js && react-scripts start"
   },
   "eslintConfig": {
     "extends": [
